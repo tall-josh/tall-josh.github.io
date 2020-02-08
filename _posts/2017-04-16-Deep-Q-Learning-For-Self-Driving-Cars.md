@@ -1,4 +1,3 @@
-
 # Deep Q-Learning For Self-Driving Cars
 
 Recently, I was fortunate enough to be awarded a Data61 summer research scholarship from the CSIRO. This post is the second of a 3 part series detailing what I learned, the conclusions I came to and some mistakes I made along the way. My chosen topic was Deep Q-Learning For Self-Driving Cars.

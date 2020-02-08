@@ -1,3 +1,3 @@
-# Using CycleGAN to train Dingocar
+# No, YOU'RE crazy!
 
 TODO
