@@ -17,10 +17,6 @@ twitter_username: mlallthethings
 # Set this to true to get LaTeX math equation support
 use_math: true
 
-paginate: 15
-baseurl: /
-permalink: /:year/:month/:title.html
-
 # Add your Google Analytics ID here if you have one and want to use it
 # google_analytics:
 
