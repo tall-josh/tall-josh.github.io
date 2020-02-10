@@ -1,4 +1,8 @@
-# Deep Q-Learning For Self-Driving Cars
+---
+title: Deep Q-Learning For Self-Driving Cars
+featured: /assets/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/01-sim.png
+layout: post
+---
 
 1. TOC
 {:toc}
@@ -19,19 +23,17 @@ Also, the code is in TensorFlow so if you’re not really familiar with TensorFl
 
 The sim consist of an agent (red) and obstacles (grey). Depending on the settings the obstacles can be stationary or moving. They can be initialized in random or predetermined positions and merge with a certain probability. The agent is equipped with a simulated LiDAR that returns an array of distance measurements to any object a beam hits. The environment is a 6 lane highway with 3 lanes in both directions. There is also a shoulder the car cannot drive on. As with many highways, adjacent the shoulder are barriers the LiDAR can also detect. The red circle is an approximate bounding box for collision detection. The little orange circle is the PID target (*carrot)* followed by the agent. Each frame the carrot is kept a set distance from the agent, the agent uses PID to chase the *carrot *across the screen. To *veer_left* or *veer_right*, the *carrot *is incremented up or down the screen.
 
-![simulator](/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/01-sim.png "Screen shot of the PyGame Simulator. The red car is agent, it is the goal of the agent to place the orange dot in one of the lanes, the car is programmed to track the dot with a simple PID loop. The lines fanning out infront of the car are simulating LiDAR beams. The colour of the LiDAR lines indicates how close another car is. Finally the gray cars are TERRIBLE drivers, programmed to randomly change lanes with zero regard for agent's wellbeing.")
+
+<center><img src="/DopeTrope/assets/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/01-sim.png" alt="simulator">  
+<br><span class="caption"><em>Screen shot of the PyGame Simulator. The red car is agent, it is the goal of the agent to place the orange dot in one of the lanes, the car is programmed to track the dot with a simple PID loop. The lines fanning out infront of the car are simulating LiDAR beams. The colour of the LiDAR lines indicates how close another car is. Finally the gray cars are TERRIBLE drivers, programmed to randomly change lanes with zero regard for agent's wellbeing.</em></span></center><br><br>
 
 Each iteration the agent can take 1 of 5 actions.
 
-* **accelerate**: increase speed by ENV_PARAMS.CAR_ACCELERATION
-
-* **break**: decrease speed by ENV_PARAMS.CAR_ACCELERATION
-
-* **veer_left**: decreases PID target (carrot) Y-position by ENV_PARAMS.CARROT_INCREMENT
-
-* **veer_right**: increases carrot Y-position by ENV_PARAMS.CARROT_INCREMENT
-
-* **do_nothing**: follows current carrot
+    * **accelerate**: increase speed by ENV_PARAMS.CAR_ACCELERATION
+    * **break**: decrease speed by ENV_PARAMS.CAR_ACCELERATION
+    * **veer_left**: decreases PID target (carrot) Y-position by ENV_PARAMS.CARROT_INCREMENT
+    * **veer_right**: increases carrot Y-position by ENV_PARAMS.CARROT_INCREMENT
+    * **do_nothing**: follows current carrot
 
 In order to get a feel for the relative motion of the obstacles, 4 frames of LiDAR data is combined into one array that can be seen below. Each row of the array represents a single LiDAR beam. The columns represent the distance reading returned by a particular beam. The most recent beam is given the value 1 followed by 0.5, 0.25 and 0.125 as the scans get older. If overlapping occurs the elements are added.
 
@@ -43,19 +45,22 @@ This implementation of Deep Q-Learning is *epsilon greedy,* initially *epsilon* 
 
 The reward system went through several iterations. Initially, my idea was to have the agent account for various levels of urgency. I devised a simple proximity based penalty system with negative rewards increasing as obstacles became closer to the agent.
 
-![zones](/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/02-zones.png "The closer a car gets to the agent the more punishment it recieves. Only a collision will cause the run to end (this is know as a terminal state)")
+<center><img src="/DopeTrope/assets/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/02-zones.png" alt="zones">
+<br><span class="caption"><em>The closer a car gets to the agent the more punishment it recieves. Only a collision will cause the run to end (this is know as a terminal state</em></span></center><br>
 
 This setup is fundamentally floored. Consider the two frames below. The agent has no way to determine whether a collision is imminent, or a car is safely passing.
 
 My next iteration I considered a large reward (+10) was awarded for reaching the right hand side of the screen. This caused some problems during training. Firstly, the agent has no way of telling the difference between;
 
-![bug](/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/03-lidar-bug.png "Notice the LiDAR data would be identical for each frame. However, the rewards received are totally different. In the left frame no collision is detected so a reward of +1 would be received. In the right frame, a reward of +10 would be received for reaching the end of the window")
+<center><img src="/DopeTrope/assets/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/03-lidar-bug.png" alt="lidar-bug">
+<br><span class="caption"><em>Notice the LiDAR data would be identical for each frame. However, the rewards received are totally different. In the left frame no collision is detected so a reward of +1 would be received. In the right frame, a reward of +10 would be received for reaching the end of the window</em></span></center><br>
 
 The next issue is data normalization. From my readings and suggestions for people much more experienced than myself, keeping input data between values -2 and 2 aids in the training process. I believe this is due to the problem of [vanishing gradients](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) among other things.
 
 After several iterations and some advise from people more knowledgeable than me ([thanks Siraj](https://www.youtube.com/watch?v=hBedCdzCoWM)), I adopted a +-1 reward system. Each frame the agent is awarded a maximum of +1 if no collision is detected. In an effort to encourage the agent to observe the speed limit the +1 reward for not crashing is multiplied by the factor below. This factor decreases the reward as the agents velocity diverges from a predetermined speed limit.
 
-![formula](/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/04-reward-formula.png "Reward formula")
+<center><img src="/DopeTrope/assets/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/04-reward-formula.png" alt="Reward formula">
+<br><span class="caption"><em>Reward formula </em></span></center><br>
 
 A terminal state occurs if a collision is detected, resulting in a reward of -1 and the simulation is reset. Additionally, when the agent reaches the right hand side of the screen the simulation is reset, but with no penalty.
 
@@ -63,21 +68,19 @@ A terminal state occurs if a collision is detected, resulting in a reward of -1 
 
 At long last here we are. To minimise clutter and avoid confusion the gist below is just a portion of the main program. For the full program you can clone it from [my git repo](https://github.com/icp-jesus/CarSimRL). Some additions I have omitted are:
 
-* Plotting LiDAR data using matplotlib
+    * Plotting LiDAR data using matplotlib
+    * Dynamically varying *epsilon*
+    * Toggling learning and display modes, allowing me to stop *learning *and use the Q-Net at the stage it is up to during training.
+    * Various debugging print statements
 
-* Dynamically varying *epsilon*
-
-* Toggling learning and display modes, allowing me to stop *learning *and use the Q-Net at the stage it is up to during training.
-
-* Various debugging print statements
-
-<iframe src="https://medium.com/media/6236194e968c674b398b82ee152fec31" frameborder=0></iframe>
+<script src="https://gist.github.com/tall-josh/63411cec48eb9efe7afae83e452be307.js"></script>
 
 ## Q-Net Architecture
 
 As with the reward system, the CNN architecture went through several iterations. I ended up settling on a reduced version of the CNN used by Deep Mind in [Mnih et al](https://arxiv.org/pdf/1312.5602.pdf)).
 
-![q-architecture](/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/05-q-achitecture.jpeg "Model architecture")
+<center><img src="/DopeTrope/assets/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/05-q-achitecture.jpeg" alt="q-architecture">
+<br><span class="caption"><em>Model architecture</em></span></center><br>
 
 ## Iteration 1: Learning To Do Nothing
 
@@ -97,9 +100,11 @@ I have recently been working on a simulation using the Unity game engine. I cann
 
 I have not yet completed the final iterations. I am not sure how long it will be before I get back to this project as I am now in my final year of my degree so I’m pretty busy. The next step is definitely going to be moving the simulation into Unity. After that I’ll probably need to through some more powerful GPU time at the problem. Training time was a major issue during this research.
 
-## Iteration 4: Dynamic And Random 2 Obstacles
+## ToDo - Iteration 4: Dynamic And Random 2 Obstacles
 
-## Iteration 5: Dynamic And Random 0–10 Obstacles
+
+
+## ToDo - Iteration 5: Dynamic And Random 0–10 Obstacles
 
 ## Looking To The Future
 
@@ -111,10 +116,11 @@ There is some additional data I think will make the agent perform better. By ins
 
 As the sim stands, the agent must infer all its information from the 4 frames of LiDAR data processed through the Q-Net. This poses a problem, inferring speed from the LiDAR data only results in relative speed, not absolute speed. Heading also has a similar problem, both can be easily inserted into the Q-Net.
 
-### Recursion
+### ToDo - Recursion
 
 The agent has no way of knowing what action it just took. This is partly the reason the actions *veer_left *and *veer_right* do not change lanes in one go. The Q-Net tended to give the same action multiple times in a row causing it to cross several lanes very quickly. I suspect, this was partly because the time it took the data to reflect any noticeable change caused by the action was around 3–5 frames. In that time, the Q-Net had performed the same action again and again. By feeding the past actions back into the Q-Net I may be able to get a more robust performance.
 
-![An idea to add additional inputs to the Q-Net, including recursively feeding back previous actions.](/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/06-feedback.jpeg "An idea to add additional inputs to the Q-Net, including recursively feeding back previous actions")
+<center><img src="/DopeTrope/assets/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/06-feedback.jpeg" alt="Recursive Q-net">
+<br><span class="caption"><em>An idea to add additional inputs to the Q-Net, including recursively feeding back previous actions. **Upon editing this 3 years later (atm 2020) I realise this is a bit naive, but considering this was my first attempt at Deep Learning at all this is not a bad idea. These days I'd use an LSTM or something.</em></span></center><br>
 
 Also,[ this article I linked earlier](https://medium.com/@awjuliani/simple-reinforcement-learning-with-tensorflow-part-4-deep-q-networks-and-beyond-8438a3e2b8df) goes over **Splitting Value and Advantage **and** Double DQN**. I definitely want implement these modifications at some point. I just need the time, I plan to work on it over the winder and summer breaks this year. Ideally I will be able to incorporate it into my final year project. Either way, I’ve been bitten by the blogging bug so I’ll post whatever I end up doing.

@@ -6,9 +6,12 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
+name: DopeTrope
 title: That's so crazy it just might work!
 description: G'day mum 😉
 github_username: tall-josh
+baseurl: '/DopeTrope'
+paginate: 10
 
 # Email and twitter are optional:
 email: joshua.d.patterson@gmail.com
