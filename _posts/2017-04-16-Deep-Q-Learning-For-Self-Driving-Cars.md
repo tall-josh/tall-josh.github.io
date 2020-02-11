@@ -13,29 +13,24 @@ This installment outlines my implementation of Deep Q-Learning to navigate a str
 
 If you are unfamiliar with Deep Q-Learning. I would also highly recommend reading my previous post, “Introduction to Deep Q-Learning”. For additional material:
 
-[This was the first tutorial I read on Q-Learning and Deep Q-Learning. It is an easy to follow walk trough with clear concise code.](http://outlace.com/Reinforcement-Learning-Part-3/) Thanks Brandon
-
-Finally, for some [more in depth concepts including Double Deep Q-Neural Network and Dueling Deep Q-Neural Networks these are great!!!](https://medium.com/@awjuliani/simple-reinforcement-learning-with-tensorflow-part-4-deep-q-networks-and-beyond-8438a3e2b8df#.156z711ua) Thanks Arthur
-
-Also, the code is in TensorFlow so if you’re not really familiar with TensorFlow, [here ](https://www.tensorflow.org/versions/master/tutorials/)is there online documentation. If they are not doing it for you. [Hvass-Labs has a great tutorial series on git that helped got me started.](https://github.com/Hvass-Labs/TensorFlow-Tutorials) Thanks Magnus
+  - [This was the first tutorial I read on Q-Learning and Deep Q-Learning. It is an easy to follow walk trough with clear concise code.](http://outlace.com/Reinforcement-Learning-Part-3/) Thanks Brandon
+  - [A more in depth concepts including Double Deep Q-Neural Network and Dueling Deep Q-Neural Networks these are great!!!](https://medium.com/@awjuliani/simple-reinforcement-learning-with-tensorflow-part-4-deep-q-networks-and-beyond-8438a3e2b8df#.156z711ua) Thanks Arthur
+  - [If you’re not really familiar with TensorFlow](https://www.tensorflow.org/versions/master/tutorials/)is there online documentation. If they are not doing it for you.
+  - [Hvass-Labs has a great tutorial series on git that helped got me started.](https://github.com/Hvass-Labs/TensorFlow-Tutorials) Thanks Magnus
 
 ## The Simulator
 
 The sim consist of an agent (red) and obstacles (grey). Depending on the settings the obstacles can be stationary or moving. They can be initialized in random or predetermined positions and merge with a certain probability. The agent is equipped with a simulated LiDAR that returns an array of distance measurements to any object a beam hits. The environment is a 6 lane highway with 3 lanes in both directions. There is also a shoulder the car cannot drive on. As with many highways, adjacent the shoulder are barriers the LiDAR can also detect. The red circle is an approximate bounding box for collision detection. The little orange circle is the PID target (*carrot)* followed by the agent. Each frame the carrot is kept a set distance from the agent, the agent uses PID to chase the *carrot *across the screen. To *veer_left* or *veer_right*, the *carrot *is incremented up or down the screen.
 
-
-<center><img src="/assets/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/01-sim.png" alt="simulator" style="width: 100%">  
-<br><span class="caption"><em>Screen shot of the PyGame Simulator. The red car is agent, it is the goal of the agent to place the orange dot in one of the lanes, the car is programmed to track the dot with a simple PID loop. The lines fanning out infront of the car are simulating LiDAR beams. The colour of the LiDAR lines indicates how close another car is. Finally the gray cars are TERRIBLE drivers, programmed to randomly change lanes with zero regard for agent's wellbeing.</em></span></center><br><br>
-
+<center><img src="/assets/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/01-sim.png" alt="simulator"  style="width: 100%">
+<br><span class="caption"><em>Screen shot of the PyGame Simulator. The red car is agent, it is the goal of the agent to place the orange dot in one of the lanes, the car is programmed to track the dot with a simple PID loop. The lines fanning out infront of the car are simulating LiDAR beams. The colour of the LiDAR lines indicates how close another car is. Finally the gray cars are TERRIBLE drivers, programmed to randomly change lanes with zero regard for agent's wellbeing</em></span></center><br>
 Each iteration the agent can take 1 of 5 actions.
 
-<ul>
-  <li>**accelerate**: increase speed by ENV_PARAMS.CAR_ACCELERATION</li>
-  <li>**break**: decrease speed by ENV_PARAMS.CAR_ACCELERATION
-  <li>**veer_left**: decreases PID target (carrot) Y-position by ENV_PARAMS.CARROT_INCREMENT
-  <li>**veer_right**: increases carrot Y-position by ENV_PARAMS.CARROT_INCREMENT
-  <li>**do_nothing**: follows current carrot
-</ul>
+  - **accelerate**: increase speed by ENV_PARAMS.CAR_ACCELERATION
+  - **break**: decrease speed by ENV_PARAMS.CAR_ACCELERATION
+  - **veer_left**: decreases PID target (carrot) Y-position by ENV_PARAMS.CARROT_INCREMENT
+  - **veer_right**: increases carrot Y-position by ENV_PARAMS.CARROT_INCREMENT
+  - **do_nothing**: follows current carrot
 
 In order to get a feel for the relative motion of the obstacles, 4 frames of LiDAR data is combined into one array that can be seen below. Each row of the array represents a single LiDAR beam. The columns represent the distance reading returned by a particular beam. The most recent beam is given the value 1 followed by 0.5, 0.25 and 0.125 as the scans get older. If overlapping occurs the elements are added.
 
@@ -70,12 +65,10 @@ A terminal state occurs if a collision is detected, resulting in a reward of -1 
 
 At long last here we are. To minimise clutter and avoid confusion the gist below is just a portion of the main program. For the full program you can clone it from [my git repo](https://github.com/icp-jesus/CarSimRL). Some additions I have omitted are:
 
-<ul>
-  <li> Plotting LiDAR data using matplotlib</li>
-  <li> Dynamically varying *epsilon*</li>
-  <li> Toggling learning and display modes, allowing me to stop *learning *and use the Q-Net at the stage it is up to during training.</li>
-  <li> Various debugging print statements</li>
-</ul>
+  - Plotting LiDAR data using matplotlib
+  - Dynamically varying *epsilon*
+  - Toggling learning and display modes, allowing me to stop *learning *and use the Q-Net at the stage it is up to during training
+  - Various debugging print statements
 
 <script src="https://gist.github.com/tall-josh/63411cec48eb9efe7afae83e452be307.js"></script>
 
@@ -127,4 +120,4 @@ The agent has no way of knowing what action it just took. This is partly the rea
 <center><img src="/assets/images/2017-04-16-Deep-Q-Learning-For-Self-Driving-Cars/06-feedback.jpeg" alt="Recursive Q-net" style="width: 100%">
 <br><span class="caption"><em>An idea to add additional inputs to the Q-Net, including recursively feeding back previous actions. **Upon editing this 3 years later (atm 2020) I realise this is a bit naive, but considering this was my first attempt at Deep Learning at all this is not a bad idea. These days I'd use an LSTM or something.</em></span></center><br>
 
-Also,[ this article I linked earlier](https://medium.com/@awjuliani/simple-reinforcement-learning-with-tensorflow-part-4-deep-q-networks-and-beyond-8438a3e2b8df) goes over **Splitting Value and Advantage **and** Double DQN**. I definitely want implement these modifications at some point. I just need the time, I plan to work on it over the winder and summer breaks this year. Ideally I will be able to incorporate it into my final year project. Either way, I’ve been bitten by the blogging bug so I’ll post whatever I end up doing.
+Also,[this article I linked earlier](https://medium.com/@awjuliani/simple-reinforcement-learning-with-tensorflow-part-4-deep-q-networks-and-beyond-8438a3e2b8df) goes over **Splitting Value and Advantage** and **Double DQN**. I definitely want implement these modifications at some point. I just need the time, I plan to work on it over the winder and summer breaks this year. Ideally I will be able to incorporate it into my final year project. Either way, I’ve been bitten by the blogging bug so I’ll post whatever I end up doing.
