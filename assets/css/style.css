@@ -853,3 +853,13 @@
 			border-radius: 5px;
 			margin: 0;
 		}
+code {
+font-family: Courier, 'New Courier', monospace;
+font-size: 12px;}
+
+div.highlight{
+  background-color: #EEEEEE;
+  border-radius: 5px;
+}
+pre.highlight {
+	margin:10px}
