@@ -29,6 +29,7 @@ plugins:
   - jekyll-gist
   - jekyll-octicons
   - jekyll-github-metadata
+  - jekyll-seo-tag
 
 titles_from_headings:
   enabled:     true
