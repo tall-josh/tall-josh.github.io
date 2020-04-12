@@ -4,9 +4,9 @@ Kubeflow
 
 In this post I intend to address the following:
 
-0. [A short intro](#AShortIntro)
-1. A VERY brief overview of Kubeflow. Anything more and I'd just be regurgitating the shpeal on the [home page](www,kubeflow.org) or [count](www.kubeflow.org) - [less](www.kubeflow.org) - [other](www.kubeflow.org) - [tutorials](www.kubeflow.org) - [and](www.kubeflow.org) - [stuff](ttps://medium.com/better-programming/kubeflow-pipelines-with-gpus-1af6a74ec2a).
-2. First Impressions
+0. [A short intro](#a-short-intro)
+1. [A VERY brief overview of Kubeflow](#a-very-brief-overview-of-kubeflow). Anything more and I'd just be regurgitating the shpeal on the [home page](www,kubeflow.org) or [count](www.kubeflow.org) - [less](www.kubeflow.org) - [other](www.kubeflow.org) - [tutorials](www.kubeflow.org) - [and](www.kubeflow.org) - [stuff](ttps://medium.com/better-programming/kubeflow-pipelines-with-gpus-1af6a74ec2a).
+2. [First Impressions](#first-impressions)
 2. How to setup Kubeflow on GPU's free trial tier
 3. Create a Docker image that can be used in Kubeflow's Jupyter Notebook server. Puling it from either Google Cloud Regristry or Docker Hub (When I figure out AWS ECR I'll add it)
 4. Create a Kubeflow pipeline using the Kubeflow pipeline python Domain Specific Language `kfp.dsl`. One of the pipeline component's Docker Images will be pulled from a private AWS ECR Regristry (Yep, I got this to work, but not the Jupyter Notebooks, go figure)
