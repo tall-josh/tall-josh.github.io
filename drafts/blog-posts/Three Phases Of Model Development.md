@@ -11,7 +11,9 @@ Three Phases Of Model Development
 
 ## R&D
 
+- Training a model for a specific task
+
 - Model interaction code in modeules
 - Notebooks used for demos and 
 
-## 
+## Production
