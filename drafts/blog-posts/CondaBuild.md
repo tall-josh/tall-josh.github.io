@@ -63,7 +63,7 @@ If you get an error that looks something like:
 conda.CondaError: Unable to create prefix directory '/home/jp/anaconda3/conda-bld/beerbot_1588215699220/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho'.
 ```
 
-Ok, so what's happening. Well for some reason to do the nested paths on distributed systems this is a hack to make the charcter lengthe 255 characters. WHATEVER! It doesn't matter! If you're getting this error it's probs because you (like a FUCKING normal person) installed conda/miniconda in your home directory. If you're on Linux and you have your home directory encrypted then the encrypted filename length exceeds 255 and you get this error. You can tell conda build to use a non encrypted directory and this will all be a bad dream.
+Ok, so what's happening. Well for some reason to do the nested paths on distributed systems this is a hack to make the character length 255 characters. WHATEVER! It doesn't matter. What does matter is they refuse fix it. So ... if you're getting this error it's probs because you (like a FUCKING normal person) installed conda/miniconda in your home directory. If you're on Linux and you have your home directory encrypted then the encrypted filename length exceeds 255 and you get this error. You can tell conda build to use a non encrypted directory and this will all be a bad dream.
 
 ```bash
 export CONDA_BLD_PATH=/tmp/condabuild
