@@ -1,9 +1,3 @@
-
-
-THis is a test:
-
-![poop](http://localhost:5000/line-chart/tall-josh/metrics-svg/master/test/train-acc.yaml?)
-
 # Build My First Conda Package Using FUCKING Conda-Build
 
 I have never some across a package with less in the way of concrete examples and work-throughs the assume beginner level.  Not to mention explanations (even at a high level) of what I need to do and why to build a simple conda package. So I'll fucking do it! You're welcome Void.
