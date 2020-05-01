@@ -1,3 +1,4 @@
+{% raw %}
 # Build My First Conda Package Using FUCKING Conda-Build
 
 I have never some across a package with less in the way of concrete examples and work-throughs the assume beginner level.  Not to mention explanations (even at a high level) of what I need to do and why to build a simple conda package. So I'll fucking do it! You're welcome Void.
@@ -54,6 +55,13 @@ conda build conda.recipe/
 ```
 
 # Errors
+
+## Jinia Rendering Errors 
+
+If you package is not too big then iterating on your template is not too time
+consuming. If it is large then waiting for `conda build` to get around to rendering 
+your `meta.yaml` can take a bit too long. Using `conda render <path to recipe dir>` 
+will speed things up.
 
 ## This FUCKING BULLSHIT!
 
@@ -151,3 +159,4 @@ package:
   name: {{ name|lower }}
 
 ```
+{% endraw %}
