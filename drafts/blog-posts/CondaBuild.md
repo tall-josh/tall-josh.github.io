@@ -56,6 +56,25 @@ conda build conda.recipe/
 
 # Errors
 
+## Does the setup.py even get loaded correctly
+
+I could not find a way to easily see what (if anythin) Jinja2 had loaded
+using `load_setup_py_data()` do I just added some print statements to help.
+
+```python
+# terminal
+python
+
+# Python shell
+import conda_build
+conda_build.__file__
+> /path/to/site-packages/conda_build/__init__.py
+
+# vim /path/to/site-packages/conda_build/_load_setup_py_data.py
+# Add these to the end of load_setup_py_data(...)
+# Around line 112, when I did this last
+```
+
 ## Jinia Rendering Errors 
 
 If you package is not too big then iterating on your template is not too time
