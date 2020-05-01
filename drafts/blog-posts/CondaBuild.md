@@ -178,4 +178,19 @@ package:
   name: {{ name|lower }}
 
 ```
+
+### Invalid version / invalid character(s)
+
+**Error message**
+```bash
+ Error message: Invalid version '0.5click>=7.0': invalid character(s)
+```
+
+**Cause**
+```python
+install_requires = [
+          "torchvision>=0.5"   # missing comma caused string to join
+          "click>=7.0",
+...
+```
 {% endraw %}
