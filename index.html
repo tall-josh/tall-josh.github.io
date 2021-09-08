@@ -1,27 +1,49 @@
 ---
-title: Dopetrope
 layout: default
 ---
-<body>
 
-	{% include nav.html %}
-        <!-- Main -->
-	<div id="main-wrapper">
-		<div class="container">
-			<div class="row">
-				{% include sidebar.html %}
-				<div class="8u skel-cell-important">
+<div class="posts">
+  {% for post in paginator.posts %}
+    <article class="post">
+      <a href="{{ site.baseurl }}{{ post.url }}">
+        <h1>{{ post.title }}</h1>
 
-					<!-- Content -->
-						<article class="box post">
-							<header>
-							        <a href="#" class="image featured"><img src="{{ site.baseurl }}/assets/images/bailey_700w.jpg" alt="" /></a>
-								<h2>What'up 🤓</h2>
-                                                        </header>
-								<p> Hi, on the off chance you are someone other than my mother - This is a collection of thoughts and ideas I have played around with over the years. If nothing else, this is <em>past Josh</em> reminding <em>future Josh</em> of what he has done and the mistakes he made along the way in the hope he can learn from them. Most of these ideas will revolve around Robotics and Deep Learning. I would not (and my high school english teachers would agree) consider myself a particularly good writer. However, I strive to explain all concepts as concisely as possible. The last thing I want is to come back to one of these posts in a few months or years and think; <em> What a bunch of needlessly technical mumbo-jumbo. </em></p>
-						</article>
+        <div>
+          <p class="post_date">{{ post.date | date: "%B %e, %Y" }}</p>
+        </div>
+      </a>
+      <div class="entry">
+        {{ post.excerpt }}
+      </div>
 
-				</div>
-			</div>
-		</div>
-	</div>
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    </article>
+  {% endfor %}
+
+  <!-- pagination -->
+  {% if paginator.total_pages > 1 %}
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
+    {% else %}
+      <span>&laquo; Prev</span>
+    {% endif %}
+
+    {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+        <span class="webjeda">{{ page }}</span>
+      {% elsif page == 1 %}
+        <a href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+      {% else %}
+        <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+    {% else %}
+      <span>Next &raquo;</span>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>

@@ -1,0 +1,46 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog.
+#
+# If you need help with YAML syntax, here are some quick references for you:
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+
+name: DopeTrope
+title: That's so crazy it just might work!
+description: G'day mum 😉
+github_username: tall-josh
+paginate: 10
+
+# Email and twitter are optional:
+email: joshua.d.patterson@gmail.com
+twitter_username: mlallthethings
+
+# Set this to true to get LaTeX math equation support
+use_math: true
+
+# Add your Google Analytics ID here if you have one and want to use it
+# google_analytics:
+
+# Everything below here can be ignored, unless you want to change the theme entirely
+theme: jekyll-theme-slate
+plugins:
+  - jekyll-feed
+  - jekyll-gist
+  - jekyll-octicons
+  - jekyll-github-metadata
+  - jekyll-seo-tag
+
+titles_from_headings:
+  enabled:     true
+  strip_title: true
+  collections: true
+
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  math_engine: katex
+  input: GFM
+  auto_ids: true
+  hard_wrap: false
+  syntax_highlighter: rouge
