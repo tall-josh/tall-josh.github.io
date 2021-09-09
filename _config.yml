@@ -1,8 +1,8 @@
 #-------------------------------
 # Site Settings
-title: Menca
-logo: # You can add own logo. For example '/images/logo.png'.
-description: Menca personal blogging theme for Jekyll
+title: That's So Crazy It Just Might Work
+logo: '/images/logo.png'
+description: How hard could it be? ... oh
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 color_scheme: auto # You can choose three modes auto, light, and dark. By default, the auto mode is set, which means the user can choose the light or dark mode themself.
@@ -11,16 +11,16 @@ color_scheme: auto # You can choose three modes auto, light, and dark. By defaul
 #-------------------------------
 # Author Settings
 author:
-  author__name: Camelia Mendes
-  author__bio: Designs, talks, and writes about web, ethics, privacy, and dev. I share design tutorials, free resources and inspiration.
-  author__avatar: '/images/01-1.jpg'
+  author__name: Josh Patterson
+  author__bio: I'll let you know when I know. How cute is my dog though???
+  author__avatar: '/images/bailey_cover.jpg'
 
 social:
-- {icon: "ion-logo-twitter", link: "https://twitter.com"}
-- {icon: "ion-logo-facebook", link: "https://facebook.com"}
-- {icon: "ion-logo-instagram", link: "https://instagram.com"}
-- {icon: "ion-logo-pinterest", link: "https://pinterest.com"}
-- {icon: "ion-logo-youtube", link: "https://youtube.com"}
+- {icon: "ion-logo-twitter", link: "https://twitter.com/mlallthethings"}
+- {icon: "ion-logo-facebook", link: "https://tenor.com/view/nope-bored-over-it-ignore-annoyed-gif-15670100"}
+- {icon: "ion-logo-instagram", link: "https://tenor.com/view/nope-bored-over-it-ignore-annoyed-gif-15670100"}
+- {icon: "ion-logo-pinterest", link: "https://tenor.com/view/nope-bored-over-it-ignore-annoyed-gif-15670100"}
+- {icon: "ion-logo-youtube", link: "https://www.youtube.com/channel/UCdokEl2TiYmBr3J5N0metwA"}
 
 # Example of adding a new link to the footer - {icon: "ion-logo-dribbble", link: "https://dribbble.com"}
 # Other icons can be found at https://ionicons.com/v4/
@@ -29,9 +29,9 @@ social:
 #-------------------------------
 # Hero Settings
 hero:
-  hero__title: Hey, I’m Camelia Mendes
-  hero__description: Designs, talks, and writes about web, ethics, privacy, and dev. I share design tutorials, free resources and inspiration.
-  hero__image: '/images/01.jpg'
+  hero__title: That's So Crazy It Might Just Work
+  hero__description: Ahh that massive tech company with billions of dollars of resources, 100's of PhDs and compute did this cool thing. I'm sure I can whip it up on my laptop in a weekend between naps.
+  hero__image: '/images/bailey_cover.jpg'
 
 
 #-------------------------------
@@ -48,31 +48,17 @@ gallery:
   gallery__title: Gallery
   gallery__columns: 3
   gallery__images:
-    - alt: 'Rest'
-      url: '/images/100.jpg'
-    - alt: 'Lifestyle'
-      url: '/images/101.jpg'
-    - alt: 'Hobby'
-      url: '/images/102.jpg'
-    - alt: 'Notes'
-      url: '/images/103.jpg'
-    - alt: 'Rest'
-      url: '/images/104.jpg'
-    - alt: 'Hobby'
-      url: '/images/105.jpg'
-    - alt: 'Fashion'
-      url: '/images/106.jpg'
-    - alt: 'Notes'
-      url: '/images/107.jpg'
-    - alt: 'Rest'
-      url: '/images/108.jpg'
+    - alt: 'Empores of the Multiverse'
+      url: '/images/bailey_cover.jpg'
+    - alt: 'Nerds'
+      url: '/images/nao11.jpg'
 
 
 #-------------------------------
 # Contact Settings
 contact:
-  email: your@email.com # Add your email for contant form
-  description: Menso comes with a built-in contact form, that you can use with Formspree service to handle up to 50 submissions per month for free. You could also easily switch to another contact form service if you want. # Add a description of your form
+  email: joshua.d.patterson1@gmail.com # Add your email for contant form
+  description: We have cake! --- (cake not provided) # Add a description of your form
 
 # NOTE
 # Menso theme comes with a contact form built-in. You can use this form with Formspree (https://formspree.io/) service and get up to 50 submissions for free. Also, you can easily switch to another service if you want.
