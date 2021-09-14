@@ -35,7 +35,7 @@ Recently I head about [The Lottery Ticket Hypothesis](https://arxiv.org/pdf/1803
   - This is cool because it indicates we're not merely stumbling on the correct weights because we have a big model
   - The act of iteratively pruning combats this previously mentioned overparametizationleading to a better, smaller, faster model
 
-# My Hypotheses
+# My Hypothesis
 
 In the paper they; train -> prune -> repeat. Each time they prune they remove a portion of the smallest weigthts. Each time they retrain they do so for the same number of steps. This means your training the model many times, yes it's getting smaller each time, but still ... yuck. 
 
