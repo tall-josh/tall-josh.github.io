@@ -19,10 +19,12 @@ date:   $DATE
 tags:   [deep-learning, machine-learning, neural-network]
 ---
 
-# Contents
+**Contents**
 
 1. TOC
 {:toc}
+
+---
 
 EOT
 
