@@ -2,7 +2,7 @@
 title: Extending The Lottery Ticket Hypothesis
 image: /images/default-cover-image.png
 layout: post
-description: ToDo
+description: Dunning Kruger or Maverick Renegade, I'll let the void be the judge.
 date:   2021-09-14
 tags:   [deep-learning, machine-learning, neural-network]
 ---
