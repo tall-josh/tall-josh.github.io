@@ -12,7 +12,7 @@ tags:   [deep-learning, machine-learning, neural-network]
 1. TOC
 {:toc}
 
----
+![div-bar](../images/logo-div-bar.png)
 
 Recently I head about [The Lottery Ticket Hypothesis](https://arxiv.org/pdf/1803.03635.pdf) on [Machine Learning Street Talk](https://www.youtube.com/watch?v=SfjJoevBbjU). So like any Machine Learning Engineer worth their salt I watched [Yannic's](https://www.youtube.com/watch?v=ZVVnvZdUMUk) video and now consider myself equipt to improve on the idea. Dunning Kruger or Maverick Renegade, I'll let the void be the judge.
 
