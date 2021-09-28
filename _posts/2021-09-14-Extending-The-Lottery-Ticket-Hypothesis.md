@@ -51,9 +51,13 @@ The paper shows that different weights end up in the lottery ticker when the ini
 
 Is there any benifite in combining 2 or more of these pruned networks trained on the same classes to create some sort of uber model?
 
+![combine model](/images/2021-09-14-Extending-The-Lottery-Ticket-Hypothesis/combine_modles.jpg)
+
 # Idea 3: Frankenmodel
 
 In a similar vein to idea 2. Can we utilize the additional capasity left in the network to add more classes?
+
+![frankenmodel](/images/2021-09-14-Extending-The-Lottery-Ticket-Hypothesis/frankenmodel.jpg)
 
 # Building A Model To Test The Hypothesis
 
