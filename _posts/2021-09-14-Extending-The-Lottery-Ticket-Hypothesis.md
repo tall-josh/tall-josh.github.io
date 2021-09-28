@@ -35,13 +35,25 @@ Recently I head about [The Lottery Ticket Hypothesis](https://arxiv.org/pdf/1803
   - This is cool because it indicates we're not merely stumbling on the correct weights because we have a big model
   - The act of iteratively pruning combats this previously mentioned overparametizationleading to a better, smaller, faster model
 
-# My Hypothesis
+# Idea 1: Prune at each epoch
 
 In the paper they; train -> prune -> repeat. Each time they prune they remove a portion of the smallest weigthts. Each time they retrain they do so for the same number of steps. This means your training the model many times, yes it's getting smaller each time, but still ... yuck. 
 
 I'm thinking you could do the pruning after each epoch. Simply look at the weights with the least change or smallest value at the end of each epoch, remove them and continue training. I don't even think you'd need to reinitialize the weights to their starting value though I feel like you may need to be a bit conservative with the rate at which you prune.
 
 _As a bit of a disclaimer, I'm pretty sure these guys would have considered this idea. When I say 'yuck' I'm not having a dig at their work. I get that you've gott'a draw a line in the sand an publish at some point. They'll probs beat me to the punch and have a better more thorough paper out before I get round to finishing this anyway._
+
+**Edit**: Turns out the paper [Deconstructing Lottery Tickets: Zeros, Signs, and the Supermask](https://arxiv.org/abs/1905.01067) has done this. Well too late to stop now.
+
+# Idea 2: Combine 2 pruned models
+
+The paper shows that different weights end up in the lottery ticker when the initial weights are changed. This indicates that the weights the end up in the lottery ticker just happend to be initialized in a adventagious way. What it also says is there is a lot of additional capasity in the network.
+
+Is there any benifite in combining 2 or more of these pruned networks trained on the same classes to create some sort of uber model?
+
+# Idea 3: Frankenmodel
+
+In a similar vein to idea 2. Can we utilize the additional capasity left in the network to add more classes?
 
 # Building A Model To Test The Hypothesis
 
